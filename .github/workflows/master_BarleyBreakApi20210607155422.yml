@@ -45,8 +45,11 @@ jobs:
       uses: microsoft/infersharpaction@v1.5
       id: runinfersharp
       
-    - name: Infer# analysis results
-      run: cat report.txt
+    - name: Upload Infer# report as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: report
+        path: infer-out/report.txt
     
     - name: Download artifact from build job
       uses: actions/download-artifact@v2
