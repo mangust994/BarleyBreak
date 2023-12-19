@@ -44,12 +44,11 @@ jobs:
     - name: Run Infer#      
       uses: microsoft/infersharpaction@v1.5
       id: runinfersharp
-      
-    - name: Upload Infer# report as an artifact
-      uses: actions/upload-artifact@v2
       with:
-        name: report
-        path: infer-out/report.txt
+        binary-path: ${{env.DOTNET_ROOT}}/myapp
+    
+    - name: Infer# analysis results
+      run: cat infer-out/report.txt
     
     - name: Download artifact from build job
       uses: actions/download-artifact@v2
