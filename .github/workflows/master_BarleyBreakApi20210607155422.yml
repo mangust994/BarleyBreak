@@ -33,14 +33,6 @@ jobs:
         name: .net-app
         path: ${{env.DOTNET_ROOT}}/myapp
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
     - name: Run Infer#      
       uses: microsoft/infersharpaction@v1.5
       id: runinfersharp
@@ -49,7 +41,15 @@ jobs:
     
     - name: Infer# analysis results
       run: cat infer-out/report.txt
-    
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
     - name: Download artifact from build job
       uses: actions/download-artifact@v2
       with:
