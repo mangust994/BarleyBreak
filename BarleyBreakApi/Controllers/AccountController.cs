@@ -33,6 +33,7 @@ namespace BarleyBreakApi.Controllers
             var result = await this.accService.RegisterAsync(model.Login, model.Password, model.Email);
             if (result.Succedeed)
             {
+                var password = 123;
                 return Ok();
             }
             ModelState.AddModelError("", result.Message);
