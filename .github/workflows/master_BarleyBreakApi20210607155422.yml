@@ -41,6 +41,15 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+    - name: Run Infer#      
+      uses: microsoft/infersharpaction@v1.5
+      id: runinfersharp
+
+    - name: Upload SARIF output to GitHub Security Center
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: infer-out/report.sarif
+    
     - name: Download artifact from build job
       uses: actions/download-artifact@v2
       with:
