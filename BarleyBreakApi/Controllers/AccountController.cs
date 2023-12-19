@@ -66,11 +66,11 @@ namespace BarleyBreakApi.Controllers
                         expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
                         signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
                 var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
+                var password = claim.Name;
                 var response = new
                 {
                     access_token = encodedJwt,
-                    username = claim.Name
+                    username = password
                 };
 
                 return Json(response);
