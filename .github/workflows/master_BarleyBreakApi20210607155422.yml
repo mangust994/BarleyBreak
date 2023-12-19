@@ -46,7 +46,7 @@ jobs:
       id: runinfersharp
       
     - name: Infer# analysis results
-      run: cat infer-out/report.txt
+      run: cat report.txt
     
     - name: Download artifact from build job
       uses: actions/download-artifact@v2
