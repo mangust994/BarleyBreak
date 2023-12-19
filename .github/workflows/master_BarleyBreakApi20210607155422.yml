@@ -31,7 +31,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: .net-app
-        path: ${{env.DOTNET_ROOT}}
+        path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
     runs-on: ubuntu-latest
@@ -45,7 +45,7 @@ jobs:
       uses: microsoft/infersharpaction@v1.5
       id: runinfersharp
       with:
-        binary-path: ${{env.DOTNET_ROOT}}/myapp
+        binary-path: ${{env.DOTNET_ROOT}}
     
     - name: Infer# analysis results
       run: cat infer-out/report.txt
