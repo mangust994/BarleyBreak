@@ -36,8 +36,6 @@ jobs:
     - name: Run Infer#      
       uses: microsoft/infersharpaction@v1.5
       id: runinfersharp
-      with:
-        binary-path: BarleyBreakApi
     
     - name: Infer# analysis results
       run: cat infer-out/report.txt
